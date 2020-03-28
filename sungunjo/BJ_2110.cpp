@@ -3,8 +3,12 @@
 #include <algorithm>
 
 using namespace std;
-//1 2 4 8 9
+// 라우터 설치 시뮬레이션 해보는 함수
+// 최소 거리 이상으로 설치했을 때 라우터 전부 다 설치 가능한지를 확인
 bool settingRouters(const vector<int> &houses, int remain_router, int min_dist) {
+	// 첫 번째 라우터는 무조건 첫 집에 설치해야함
+	// 만약 두 번째 집부터 설치했을 때도 전부 설치 가능하다면 두 번째 집에 설치한 걸 첫 번째 집으로 옮겼을 때에는
+	// 최소 인접 거리 더 늘어날 수 있음
 	int prev_set_pos = 0;
 	remain_router -= 1;
 	for (int h = 1; h < houses.size(); h++) {
