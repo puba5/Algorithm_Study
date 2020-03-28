@@ -16,9 +16,12 @@ int main() {
 
 		sort(lego.begin(), lego.end());
 		
+		// 가장 짧은 레고 부터 구멍 크기 절반 길이 레고까지 돌면서 나머지 한 조각 길이를 찾음
 		int lego_limit = x / 2;
 		int first = 0, second = -1;
 		while ((first < lego.size()) && (lego[first] <= lego_limit)) {
+			// 첫 번째 조각 다음 레고부터 마지막 레고까지만 확인하면 됨
+			// 첫 번째 조각 이전 조각들은 이미 이전에 확인한것들이기 때문
 			int left = first + 1, right = lego.size() - 1;
 			int remain_len = x - lego[first];
 			while (left <= right) {
