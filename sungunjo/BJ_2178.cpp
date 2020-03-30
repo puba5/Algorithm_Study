@@ -26,11 +26,11 @@ int main() {
     for (int n = 0; n < N; n++) {
         for (int m = 0; m < M; m++) {
             int input;
-            scanf("%d", &input);
+            scanf("%1d", &input);
             map[n][m] = input - 1;
         }
     }
-
+    
     queue<Node> q;
 
     q.push(Node(0, 0));
