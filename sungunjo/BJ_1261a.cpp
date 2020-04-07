@@ -30,7 +30,7 @@ pair<int, int> dir[4] = {
 };
 
 
-
+// 우선순위 bfs 사용
 int priority_bfs(vector<vector<int> > &map) {
 	int X = map.size();
 	int Y = map[0].size();
