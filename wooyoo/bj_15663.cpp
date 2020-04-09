@@ -14,6 +14,10 @@ vector<vector<int>> answers;
 void allCase(int m, vector<int> nums, vector<int> ans) {
 
     if (m == 0) {
+        for(int i=1;i<ans.size();i++){
+            if(ans[i]<ans[i-1])
+                return;
+        }
         answers.push_back(ans);
         return;
     }
@@ -36,9 +40,8 @@ int main() {
     cin >> n >> m;
     vector<int> nums;
     for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-        nums.push_back(tmp);
+
+        nums.push_back(i+1);
     }
 
     sort(nums.begin(), nums.end());
