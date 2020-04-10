@@ -7,8 +7,8 @@
 
 using namespace std;
 
-// 백준 15663 N과 M (9)
-// 경우의 수가 8! 밖에 안 나오므로 모든 경우의 수를 해보면 될 것 같다.
+// 백준 15650 N과 M (2)
+
 vector<vector<int>> answers;
 
 void allCase(int m, vector<int> nums, vector<int> ans) {
