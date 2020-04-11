@@ -5,7 +5,7 @@ using namespace std;
 int main() {
 	int N;
 	scanf("%d", &N);
-	int plastic_num[10] = {0,};
+	int plastic_num[10];
 
 	do {
 		plastic_num[N % 10] += 1;
