@@ -7,17 +7,17 @@
 
 using namespace std;
 
-// 백준 15663 N과 M (9)
-// 경우의 수가 8! 밖에 안 나오므로 모든 경우의 수를 해보면 될 것 같다.
+// 백준 15651 N과 M (3)
+// 경우의 수가 7^7 밖에 안 나오므로 모든 경우의 수를 해보면 될 것 같다.
+// 다만 모든 경우 출력하므로 속도 문제 발생하므로 printf 사용하거나 입출력 옵션 넣길..
+
+
 vector<vector<int>> answers;
 
 void allCase(int m, vector<int> nums, vector<int> ans) {
 
     if (m == 0) {
-        for(int i=1;i<ans.size();i++){
-            if(ans[i]<ans[i-1])
-                return;
-        }
+
         answers.push_back(ans);
         return;
     }
@@ -26,9 +26,9 @@ void allCase(int m, vector<int> nums, vector<int> ans) {
             int tmp = nums[i];
             vector<int> tmpv = ans;
             tmpv.push_back(nums[i]);
-            nums[i] = -1;
+            // nums[i] = -1;
             allCase(m - 1, nums, tmpv);
-            nums[i] = tmp;
+            // nums[i] = tmp;
         }
     }
 
@@ -41,10 +41,9 @@ int main() {
     vector<int> nums;
     for (int i = 0; i < n; i++) {
 
-        nums.push_back(i+1);
+        nums.push_back(i + 1);
     }
 
-    sort(nums.begin(), nums.end());
     vector<int> ans;
     allCase(m, nums, ans);
 
@@ -54,9 +53,9 @@ int main() {
         if (i == 0 || answers[i] != answers[i - 1]) {
             for (int j = 0; j < answers[i].size(); j++) {
 
-                cout << answers[i][j] << " ";
+                printf("%d ", answers[i][j]);
             }
-            cout << '\n';
+          printf("\n");
         }
     }
     return 0;
