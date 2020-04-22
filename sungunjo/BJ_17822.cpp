@@ -98,10 +98,9 @@ bool Disk::erase() {
 
 			queue<Pos> q;
 			bool is_erased = false;
-			int num = this->num[n][m];
 			q.push(Pos(n, m));
 			check[n][m] = true;
-
+			
 			while (!q.empty()) {
 				Pos pos = q.front(); q.pop();
 
@@ -115,19 +114,17 @@ bool Disk::erase() {
 						continue;
 					}
 
-					if (this->num[next_pos.n][next_pos.m] == num) {
-						this->num[next_pos.n][next_pos.m] = 0;
-						this->remained -= 1;
+					if (this->num[next_pos.n][next_pos.m] == this->num[n][m]) {
+						this->deleteNum(next_pos.n, next_pos.m);
 						q.push(next_pos);
 						check[next_pos.n][next_pos.m] = true;
 						is_erased = true;
 					}
 				}
-				if (is_erased) {
-					this->num[n][m] = 0;
-					this->remained -= 1;
-					is_changed = true;
-				}
+			}
+			if (is_erased) {
+				this->deleteNum(n, m);
+				is_changed = true;
 			}
 		}
 	}
@@ -136,8 +133,7 @@ bool Disk::erase() {
 
 bool Disk::equalize() {
 	bool is_remained = false;
-	double avg = this->sum() / this->remained;
-	printf("avg = %f = %d / %d\n", avg , this->sum(), this->remained);
+	double avg = (double) this->sum() / this->remained;
 
 	for (int n = 0; n < this->N; n++) {
 		for (int m = 0; m < this->M; m++) {
@@ -146,15 +142,11 @@ bool Disk::equalize() {
 			}
 
 			if ((double) this->num[n][m] > avg) {
-				printf("decrease %d, %d\n", n, m);
 				this->num[n][m] -= 1;
 			} else if ((double) this->num[n][m] < avg) {
-				printf("increase %d, %d\n", n, m);
 				this->num[n][m] += 1;
 			}
-			if (this->num[n][m] == 0) {
-				this->remained -= 1;
-			}
+
 		}
 	}
 
@@ -163,50 +155,36 @@ bool Disk::equalize() {
 
 void Disk::rotateTrack(int track, int d, int k) {
 	for (int cnt = 0; cnt < k; cnt++) {
-		printf("\ncnt_%d : ", cnt);
 		vector<int> &track_num = this->num[track];
 		int prev_num = track_num[0];
 		int next_i = 0;
-		for (int i = 0; i < this->N; i++) {
+		for (int i = 0; i < this->M; i++) {
 			next_i = next_i + g_d[d];
 			solveOverflow(next_i, this->M);
 			int tmp = track_num[next_i];
 			track_num[next_i] = prev_num;
 			prev_num = tmp;
 		}
-		for (int i = 0; i < this->N; i++) {
-			printf("%d ", track_num[i]);
-		}
-		printf("\n");
 	}
 }
 bool Disk::changeNum() {
 	if (this->erase() == false) {
-		printf("erase fail");
-		this->print();
 		if (this->equalize() == false) {
-		printf("equalize fail");
-		this->print();
 			return false;
 		}
-				printf("equalized");
-		this->print();
 	}
-			printf("erased");
-		this->print();
 
 	return true;
 }
 
-void Disk::del
+void Disk::deleteNum(int n, int m) {
+	this->num[n][m] = 0;
+	this->remained -= 1;
+}
 
 bool Disk::rotateByCmd(int x, int d, int k) {
 	for (int i = x; i <= this->N; i += x) {
-		printf("\nX_%d\n", i);
 		this->rotateTrack(i - 1, d, k);
-		printf("rotated");
-		this->print();
-
 	}
 
 	if (this->changeNum() == false) {
@@ -247,7 +225,6 @@ int main() {
 		int x, d, k;
 		scanf("%d %d %d", &x, &d, &k);
 
-		printf("\nT_%d", t);
 		if (disk.rotateByCmd(x, d, k) == false) {
 			break;
 		}
@@ -256,17 +233,4 @@ int main() {
 	printf("%d\n", disk.sum());
 
 	return 0;
-}
-
-
-
-void Disk::print() {
-	printf("\n");
-	for (int n = 0; n < this->N; n++) {
-		for (int m = 0; m < this->M; m++) {
-			printf("%d ", this->getNum(n, m));
-		}
-		printf("\n");
-	}
-	printf("\n");
 }
