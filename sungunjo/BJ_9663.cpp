@@ -36,6 +36,7 @@ int nQueen(int *row, bool *c_list, int r, int N) {
 	return sum;
 }
 
+
 int main() {
 	int N;
 	scanf("%d", &N);
