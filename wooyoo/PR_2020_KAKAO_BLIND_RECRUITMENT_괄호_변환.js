@@ -1,7 +1,7 @@
 // 프로그래머즈 2020_KAKAO_BLIND_RECRUITMENT_괄호_변환
 
 function stringV(v) {
-  console.log(v);
+  // console.log(v);
   if (v.length == 0) {
     return "";
   }
@@ -18,10 +18,10 @@ function stringV(v) {
     }
     if (rightOrNot == 0) {
       if (isRight == 0) {
-        console.log("Same");
+        // console.log("Same");
         return v.substring(0, i + 1) + stringV(v.substring(i + 1));
       } else {
-        console.log("NotSame");
+        // console.log("NotSame");
         var newString = v.substring(1, i);
         var retString = "";
         for (var j = 0; j < newString.length; j++) {
