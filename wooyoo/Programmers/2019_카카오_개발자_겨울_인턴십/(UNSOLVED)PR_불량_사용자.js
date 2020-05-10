@@ -13,7 +13,7 @@ function banCheck(user_id, banned_id, banned_id_str_index, bannedList, answerLis
     bannedList.sort();
     //console.log(bannedList);
     var tmpArray = JSON.parse(JSON.stringify(bannedList));
-    console.log(bannedList.equals(tmpArray));
+    //  console.log(bannedList.equals(tmpArray));
     console.log(tmpArray);
     if (answerList.indexOf(tmpArray) == -1) {
       answerList.push(tmpArray);
@@ -28,8 +28,8 @@ function banCheck(user_id, banned_id, banned_id_str_index, bannedList, answerLis
   // 정지 유저와 일치하는 유저를 찾는다.
   for (var user of user_id) {
     // 이 유저는 정지 당하지 않았고
-    //
-    if (banned.length === user.length && bannedList.indexOf(banned) == -1) {
+    //&& bannedList.indexOf(banned) == -1
+    if (banned.length === user.length) {
       var same = 1;
 
       for (var cmp = 0; cmp < banned.length; cmp++) {
