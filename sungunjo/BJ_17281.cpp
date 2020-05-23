@@ -52,8 +52,10 @@ int hit(vector<bool> &runner_in, Bat bat_result) {
 	}
 	
 	for (int i = (int) THIRD_BASE; i >= advance; i--) {
-		runner_in[i] = runner_in[i - advance];
-		runner_in[i - advance] = false;
+		if (runner_in[i - advance] == true) {
+			runner_in[i] = true;
+			runner_in[i - advance] = false;
+		}
 	}
 
 	return score;
