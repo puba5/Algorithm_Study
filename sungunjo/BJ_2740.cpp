@@ -32,7 +32,6 @@ int main() {
 		for (int k = 0; k < K; k++) {
 			for (int m = 0; m < M; m++) {
 				AB[n][k] += (A[n][m] * B[m][k]);
-				
 			}
 			cout << AB[n][k] << " ";
 		}
