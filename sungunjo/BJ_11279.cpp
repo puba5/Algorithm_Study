@@ -107,6 +107,12 @@ public:
 		int ret = top();
 		pushFront((*this).tree[(*this).last_node]);
 		(*this).tree[(*this).last_node] = EMPTY_NODE;
+
+
+		if ((*this).last_node >= ROOT_NODE) {
+			(*this).last_node -= 1;
+		}
+
 		topDown();
 
 		return ret;
