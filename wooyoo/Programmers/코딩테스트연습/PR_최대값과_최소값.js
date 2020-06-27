@@ -1,3 +1,5 @@
+// 프로그래머스 최대값과 최소값
+
 function solution(s) {
   let numList = s.split(" ");
   let numberList = numList.map((a) => Number(a));
