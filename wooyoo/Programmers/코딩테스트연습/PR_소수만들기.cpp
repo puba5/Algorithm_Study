@@ -9,6 +9,20 @@ using namespace std;
 // 에라토스테네스의 체로 소수 판별 배열 생성
 bool isNotPrime[3001];
 
+int bruteForce(int start, vector<int> nums, int checkSum, int sum)
+{
+    if (checkSum == 3)
+    {
+        return !isNotPrime[sum];
+    }
+    int ret = 0;
+    for (int i = start; i < nums.size(); i++)
+    {
+        ret += bruteForce(i + 1, nums, checkSum + 1, sum + nums[i]);
+    }
+    return ret;
+}
+
 int solution(vector<int> nums)
 {
     int answer = 0;
@@ -24,17 +38,7 @@ int solution(vector<int> nums)
     int len = nums.size();
     for (int i = 0; i < len; i++)
     {
-        for (int j = i + 1; j < len; j++)
-        {
-            for (int k = j + 1; k < len; k++)
-            {
-                int sum = nums[i] + nums[j] + nums[k];
-                if (!isNotPrime[sum])
-                {
-                    answer++;
-                }
-            }
-        }
+        answer += bruteForce(i + 1, nums, 1, nums[i]);
     }
 
     return answer;
