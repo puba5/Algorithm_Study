@@ -1,3 +1,6 @@
+// 프로그래머스 영어 끝말잇기
+// set을 활용
+
 function solution(n, words) {
   var answer = [0, 0];
 
