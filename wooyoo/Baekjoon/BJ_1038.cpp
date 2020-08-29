@@ -22,8 +22,17 @@ int main()
 {
     int n;
     cin >> n;
-    while (1)
+    int number = 0;
+    while (number++)
     {
+        if (isDecreasingNumber(number))
+        {
+            n--;
+        }
+        if (n == 0)
+        {
+            cout << number;
+        }
     }
 
     return 0;
