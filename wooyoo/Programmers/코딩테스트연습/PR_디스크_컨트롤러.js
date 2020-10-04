@@ -32,7 +32,6 @@ function solution(jobs) {
 
   while (jobs.length || availJobs.length) {
     getAvailJobs(availJobs, jobs, currentTime);
-    console.log(currentTime, "$$", jobs, "##", availJobs);
     if (availJobs.length === 0) {
       currentTime += 1;
       continue;
